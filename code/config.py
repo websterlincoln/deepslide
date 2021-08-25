@@ -7,7 +7,7 @@ Authors: Jason Wei, Behnaz Abdollahi, Saeed Hassanpour
 
 import argparse
 from pathlib import Path
-
+from multiprocessing import cpu_count
 import torch
 
 from compute_stats import compute_stats
@@ -55,7 +55,7 @@ parser.add_argument(
 # Number of processes to use.
 parser.add_argument("--num_workers",
                     type=int,
-                    default=8,
+                    default=cpu_count(), #default was 8, but this adjust for my system's total
                     help="Number of workers to use for IO")
 # Default shape for ResNet in PyTorch.
 parser.add_argument("--patch_size",
